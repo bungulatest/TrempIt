@@ -12,6 +12,9 @@ public class Driver extends Attender {
     List<Passenger> passengerList;
     List<Passenger> pendingPassengerList;
 
+
+    //eran katz
+
     public Driver() {
         super();
     }
