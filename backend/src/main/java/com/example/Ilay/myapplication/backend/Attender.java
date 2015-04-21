@@ -1,31 +1,31 @@
 package com.example.Ilay.myapplication.backend;
 
+import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnore;
+import com.googlecode.objectify.Ref;
+import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 
 /**
  * Created by Ilay on 20/4/2015.
  */
+
+@Entity
 public class Attender {
     @Id
     Long id;
-    Long trempitUserid;
-    Long eventid;
+    Ref<TrempitUser> trempitUser = Ref.create(new TrempitUser());
+    Ref<Event> event = Ref.create(new Event());
     String fullName;
     Location startingLocation;
 
-    public Attender(Long trempitUserid, Long eventid, String fullName, Location startingLocation) {
-        this.trempitUserid = trempitUserid;
-        this.eventid = eventid;
-        this.fullName = fullName;
+    public Attender() {
+    }
+
+    public Attender(Location startingLocation, String fullName, Event event, TrempitUser trempitUser) {
         this.startingLocation = startingLocation;
-    }
-
-    public Long getTrempitUserid() {
-        return trempitUserid;
-    }
-
-    public void setTrempitUserid(Long trempitUserid) {
-        this.trempitUserid = trempitUserid;
+        this.fullName = fullName;
+        this.event = Ref.create(event);
+        this.trempitUser = Ref.create(trempitUser);
     }
 
     public Long getId() {
@@ -36,12 +36,20 @@ public class Attender {
         this.id = id;
     }
 
-    public Long getEventid() {
-        return eventid;
+    public TrempitUser getTrempitUser() {
+        return trempitUser.getValue();
     }
 
-    public void setEventid(Long eventid) {
-        this.eventid = eventid;
+    public void setTrempitUser(TrempitUser newTrempitUser) {
+        this.trempitUser = Ref.create(newTrempitUser);
+    }
+
+    public Event getEvent() {
+        return event.getValue();
+    }
+
+    public void setEvent(Event newEvent) {
+        this.event = Ref.create(newEvent);
     }
 
     public String getFullName() {
@@ -56,7 +64,7 @@ public class Attender {
         return startingLocation;
     }
 
-    public void setStartingLocation(Location startingLocation) {
-        this.startingLocation = startingLocation;
+    public void setStartingLocation(Location newStartingLocation) {
+        this.startingLocation = newStartingLocation;
     }
 }

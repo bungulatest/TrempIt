@@ -6,8 +6,8 @@ package com.example.Ilay.myapplication.backend;
 public class Passenger extends Attender {
     Long driverid;
 
-    public Passenger(Long trempitUserid, Long eventid, String fullName, Location startingLocation) {
-        super(trempitUserid, eventid, fullName, startingLocation);
+    public Passenger() {
+        super();
     }
 
 

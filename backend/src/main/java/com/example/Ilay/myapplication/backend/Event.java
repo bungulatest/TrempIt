@@ -1,24 +1,33 @@
 package com.example.Ilay.myapplication.backend;
 
+import com.googlecode.objectify.Ref;
+import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 /**
  * Created by Ilay on 20/4/2015.
  */
+
+@Entity
 public class Event {
     @Id
     Long id;
     Date startTime;
     Location location;
     String title;
-    List<Driver> driverList;
-    List<Attender> attenderList;
-    Map<Driver, List<Passenger>> pendingPassengers; //TODO: use Driver as key or driverid?
+    List<Ref<Driver>> driverList = new ArrayList<>();
+    List<Ref<Attender>> attenderList = new ArrayList<>();
+    //Map<Driver, List<Passenger>> pendingPassengers; //TODO: use Driver as key or driverid?
+
+    public Event() {
+        this.id = new Long(1);
+    }
 
     public Event(Date startTime, Location location, String title) {
         this.startTime = startTime;
@@ -59,26 +68,43 @@ public class Event {
     }
 
     public List<Driver> getDriverList() {
-        return driverList;
+        List<Driver> ret = new ArrayList<>();
+        Iterator<Ref<Driver>> it = driverList.iterator();
+
+        while (it.hasNext())
+            ret.add(it.next().getValue());
+        return ret;
     }
 
-    public void setDriverList(List<Driver> driverList) {
-        this.driverList = driverList;
+    public void setDriverList(List<Driver> newDriverList) {
+        Iterator<Driver> it = newDriverList.iterator();
+
+        while (it.hasNext()) {
+            Ref<Driver> newDriver = Ref.create(it.next());
+            driverList.add(newDriver);
+        }
     }
 
     public List<Attender> getAttenderList() {
-        return attenderList;
+        List<Attender> ret = new ArrayList<>();
+        Iterator<Ref<Attender>> it = attenderList.iterator();
+
+        while (it.hasNext())
+            ret.add(it.next().get());
+        return ret;
     }
 
-    public void setAttenderList(List<Attender> attenderList) {
-        this.attenderList = attenderList;
+    public void setAttenderList(List<Attender> newAttenderList) {
+        Iterator<Attender> it = newAttenderList.iterator();
+
+        while (it.hasNext()) {
+            Ref<Attender> newAttender = Ref.create(it.next());
+            attenderList.add(newAttender);
+        }
     }
 
-    public Map<Driver, List<Passenger>> getPendingPassengers() {
-        return pendingPassengers;
-    }
-
-    public void setPendingPassengers(Map<Driver, List<Passenger>> pendingPassengers) {
-        this.pendingPassengers = pendingPassengers;
+    public void addAttender(Attender newAttender) {
+        Ref<Attender> attenderRef = Ref.create(newAttender);
+        attenderList.add(attenderRef);
     }
 }

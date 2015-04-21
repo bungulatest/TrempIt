@@ -1,10 +1,13 @@
 package com.example.Ilay.myapplication.backend;
 
+import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 
 /**
  * Created by Ilay on 20/4/2015.
  */
+
+@Entity
 public class Location {
     @Id
     Long id;
@@ -14,6 +17,10 @@ public class Location {
     String country;
     String city;
     String street;
+
+
+    public Location() {
+    }
 
     public Location(float longitude, float latitude) {
         this.longitude = longitude;

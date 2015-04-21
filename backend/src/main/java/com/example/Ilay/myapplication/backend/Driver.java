@@ -12,10 +12,8 @@ public class Driver extends Attender {
     List<Passenger> passengerList;
     List<Passenger> pendingPassengerList;
 
-    public Driver(Long trempitUserid, Long eventid, String fullName, Location startingLocation, int availableSeats, Date arrivalTime) {
-        super(trempitUserid, eventid, fullName, startingLocation);
-        this.availableSeats = availableSeats;
-        this.arrivalTime = arrivalTime;
+    public Driver() {
+        super();
     }
 
     public int getAvailableSeats() {
