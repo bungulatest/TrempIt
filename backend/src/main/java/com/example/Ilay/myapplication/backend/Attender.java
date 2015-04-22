@@ -13,8 +13,8 @@ import com.googlecode.objectify.annotation.Id;
 public class Attender {
     @Id
     Long id;
-    Ref<TrempitUser> trempitUser = Ref.create(new TrempitUser());
-    Ref<Event> event = Ref.create(new Event());
+    Ref<TrempitUser> trempitUser;// = Ref.create(new TrempitUser());
+    Ref<Event> event;// = Ref.create(new Event());
     String fullName;
     Location startingLocation;
 
@@ -37,7 +37,7 @@ public class Attender {
     }
 
     public TrempitUser getTrempitUser() {
-        return trempitUser.getValue();
+        return trempitUser.get();
     }
 
     public void setTrempitUser(TrempitUser newTrempitUser) {
@@ -45,7 +45,12 @@ public class Attender {
     }
 
     public Event getEvent() {
-        return event.getValue();
+        if (event != null) {
+            return event.get();
+        }
+        else {
+            return null;
+        }
     }
 
     public void setEvent(Event newEvent) {

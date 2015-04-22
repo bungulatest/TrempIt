@@ -20,7 +20,7 @@ public class TrempitUser {
     List<Driver> driverList = new ArrayList<>();
 
     public TrempitUser() {
-        this.id = new Long(1);
+        //this.id = new Long(1);
     }
 
     public TrempitUser(String fullName, Location homeLocation) {

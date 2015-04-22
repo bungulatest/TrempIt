@@ -26,7 +26,7 @@ public class Event {
     //Map<Driver, List<Passenger>> pendingPassengers; //TODO: use Driver as key or driverid?
 
     public Event() {
-        this.id = new Long(1);
+        //this.id = new Long(1);
     }
 
     public Event(Date startTime, Location location, String title) {
