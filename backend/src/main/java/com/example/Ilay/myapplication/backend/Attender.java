@@ -37,7 +37,12 @@ public class Attender {
     }
 
     public TrempitUser getTrempitUser() {
-        return trempitUser.get();
+        if (trempitUser != null) {
+            return trempitUser.get();
+        }
+        else {
+            return null;
+        }
     }
 
     public void setTrempitUser(TrempitUser newTrempitUser) {
