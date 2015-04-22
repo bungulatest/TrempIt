@@ -14,7 +14,7 @@ public class Attender {
     @Id
     Long id;
     Ref<TrempitUser> trempitUser;// = Ref.create(new TrempitUser());
-    Ref<Event> event;// = Ref.create(new Event());
+    Ref<Event> event;
     String fullName;
     Location startingLocation;
 
